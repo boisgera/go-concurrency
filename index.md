@@ -46,7 +46,7 @@ func main() {
 
 ```
 $ go run app.go 
-ISS Info: {"message": "success", "timestamp": 1672155304, 
+{"message": "success", "timestamp": 1672155304, 
 "iss_position": {"longitude": "-13.8055", "latitude": "-37.7661"}}
 ```
 
@@ -79,7 +79,7 @@ func main() {
 
 ```
 $ time go run app.go 
-ISS Info: {"message": "success", "timestamp": 1672155760, 
+{"message": "success", "timestamp": 1672155760, 
 "iss_position": {"longitude": "21.8250", "latitude": "-50.7057"}}
 1 2 3 4 5 6 7 8 9 10 
 
