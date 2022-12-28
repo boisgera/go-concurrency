@@ -9,6 +9,165 @@ theme: uncover
 
 ---
 
+## Goroutines 
+
+💻 [A Tour of Go: Goroutines](https://go.dev/tour/concurrency/1)
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func say(s string) {
+    for i := 0; i < 5; i++ {
+    time.Sleep(100 * time.Millisecond)
+    fmt.Println(s)
+    }
+}
+```
+
+----
+
+### Serial execution
+
+🚀 Execute
+
+```go
+func main() {
+    say("world")
+    say("hello")
+}
+```
+
+---
+
+### Concurrent Execution
+
+🚀 Execute
+
+```go
+func main() {
+    go say("world")
+    say("hello")
+}
+```
+
+---
+
+With `go`, `says("world")`:
+
+  - is a **non-blocking** call (with no return value),
+
+  - gets executed **in the background**,
+
+  - **concurrently** with `say("hello")`
+
+---
+
+### 🧪 Experiment
+
+🚀 Run the same code several times.
+
+What's going on?
+
+
+---
+
+### 🧪 Experiment
+
+🚀 Execute
+
+```go
+func main() {
+    go say("world")
+    go say("hello")
+}
+```
+
+What is going on ? Do you have a (dirty) fix ?
+
+---
+
+## Pitfalls of Concurrency
+
+⚠️ Concurrent process & Shared Variables
+
+---
+
+```go
+func main() {
+    counter := 0
+    // 📈
+    go func() {
+        for {
+            fmt.Println(counter)
+            time.Sleep(time.Second)
+        }
+    }()
+    for {
+        // 😴
+        time.Sleep(time.Second)
+        // 🔨
+        for i := 0; i < 1000; i++ {
+            go func() {
+                counter = counter + 1
+            }()
+            go func() {
+                counter = counter - 1
+            }()
+        }
+    }
+}
+```
+
+---
+
+  - In C/C++, you would use a 🔒 **lock** (mutex) to ensure that at most one process can access the `counter` variable at any given moment.
+
+---
+
+This also works in Go, but it's not idiomatic. 
+
+In Go:
+
+  > Don't communicate by sharing memory; 
+  > share memory by communicating.
+
+The core communication device is a **channel**.
+
+---
+
+
+## Channels
+
+---
+
+**TODO:**
+
+Channels: (sync) signals & data.
+
+  - signal ("sync on") end of goroutine,
+    more generally, sync messages.
+
+  - "emulate" return value (blocking or non-blocking)
+
+  - multiple input values
+
+---
+
+## Patterns
+
+  - Parallel execution
+
+  - Throttling (ex 1 req / 5 sec)
+
+  - Channel Duplication
+
+---
+
 ![bg](images/nasa-wAkLQnT2TC0-unsplash.jpg)
 
 <!-- _color: white -->
@@ -62,8 +221,8 @@ import (
 
 func Compute() {
     for i := 1; i <= 10; i++ {
-        time.Sleep(time.Second / 10)
-        fmt.Print(i, " ")
+    time.Sleep(time.Second / 10)
+    fmt.Print(i, " ")
     }
     fmt.Println("")
 }
