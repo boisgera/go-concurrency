@@ -125,6 +125,12 @@ func main() {
 
 ---
 
+### 🤦 Ooops
+
+![bg contain](images/counter.svg)
+
+---
+
   - In C/C++, you would use a 🔒 **lock** (mutex) to ensure that at most one process can access the `counter` variable at any given moment.
 
 ---

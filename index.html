@@ -106,12 +106,15 @@
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" style="--theme:uncover;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/counter.svg&quot;);background-size:contain;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="10" data-theme="uncover" style="--theme:uncover;" data-marpit-advanced-background="content">
+<h3><img class="emoji" draggable="false" alt="🤦" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f926.svg" data-marp-twemoji=""/> Ooops</h3>
+</section>
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-theme="uncover" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-theme="uncover" style="--theme:uncover;">
 <ul>
 <li>In C/C++, you would use a <img class="emoji" draggable="false" alt="🔒" src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f512.svg" data-marp-twemoji=""/> <strong>lock</strong> (mutex) to ensure that at most one process can access the <code>counter</code> variable at any given moment.</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-theme="uncover" style="--theme:uncover;">
 <p>This also works in Go, but it's not idiomatic.</p>
 <p>In Go:</p>
 <blockquote>
@@ -120,10 +123,10 @@ share memory by communicating.</p>
 </blockquote>
 <p>The core communication device is a <strong>channel</strong>.</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-theme="uncover" style="--theme:uncover;">
 <h2>Channels</h2>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-theme="uncover" style="--theme:uncover;">
 <p><strong>TODO:</strong></p>
 <p>Channels: (sync) signals &amp; data.</p>
 <ul>
@@ -139,7 +142,7 @@ more generally, sync messages.</p>
 </li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-theme="uncover" style="--theme:uncover;">
 <h2>Patterns</h2>
 <ul>
 <li>
@@ -153,11 +156,11 @@ more generally, sync messages.</p>
 </li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-color="white" data-theme="uncover" style="--color:white;--theme:uncover;color:white;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/nasa-wAkLQnT2TC0-unsplash.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="15" data-color="white" data-theme="uncover" style="--color:white;--theme:uncover;color:white;" data-marpit-advanced-background="content">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-color="white" data-theme="uncover" style="--color:white;--theme:uncover;color:white;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/nasa-wAkLQnT2TC0-unsplash.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="16" data-color="white" data-theme="uncover" style="--color:white;--theme:uncover;color:white;" data-marpit-advanced-background="content">
 <h1>Where is the ISS?</h1>
 <p><img src="images/ISS-position-browser.png" alt="" /></p>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-color="white" data-theme="uncover" style="color:white;" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-theme="uncover" style="--theme:uncover;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-color="white" data-theme="uncover" style="color:white;" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-theme="uncover" style="--theme:uncover;">
 <p><code>app.go</code></p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
@@ -178,13 +181,13 @@ more generally, sync messages.</p>
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-theme="uncover" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>$ go run app.go 
 {&quot;message&quot;: &quot;success&quot;, &quot;timestamp&quot;: 1672155304, 
 &quot;iss_position&quot;: {&quot;longitude&quot;: &quot;-13.8055&quot;, &quot;latitude&quot;: &quot;-37.7661&quot;}}
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-theme="uncover" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">import</span> (
     <span class="hljs-string">&quot;fmt&quot;</span>
     <span class="hljs-string">&quot;time&quot;</span>
@@ -207,7 +210,7 @@ more generally, sync messages.</p>
 
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-theme="uncover" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>$ time go run app.go 
 {&quot;message&quot;: &quot;success&quot;, &quot;timestamp&quot;: 1672155760, 
 &quot;iss_position&quot;: {&quot;longitude&quot;: &quot;21.8250&quot;, &quot;latitude&quot;: &quot;-50.7057&quot;}}
@@ -218,7 +221,7 @@ user    0m0,394s
 sys     0m0,125s
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-theme="uncover" style="--theme:uncover;">
 <h2>Start a GoRoutine</h2>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go">
 <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
@@ -228,7 +231,7 @@ sys     0m0,125s
 
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-theme="uncover" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-theme="uncover" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code>$ time go run app.go 
 1 2 3 4 {&quot;message&quot;: &quot;success&quot;, &quot;timestamp&quot;: 1672156095, 
 &quot;iss_position&quot;: {&quot;longitude&quot;: &quot;54.5906&quot;, &quot;latitude&quot;: &quot;-49.9492&quot;}}
