@@ -151,26 +151,205 @@ The core communication device is a **channel**.
 
 ---
 
-**TODO:**
+### Create
 
-Channels: (sync) signals & data.
+Channels are typed and (optionally) buffered:
 
-  - signal ("sync on") end of goroutine,
-    more generally, sync messages.
+```go
+message := make(chan string, 1)
 
-  - "emulate" return value (blocking or non-blocking)
+numbers := make(chan int, 10)
 
-  - multiple input values
+ready := make(chan bool) // same as make(chan bool, 0)
+```
 
 ---
 
-## Patterns
+### Read & Write
 
-  - Parallel execution
+```go
+message <- "Hello world!"
+s := <-message
+fmt.Println(s)
+```
 
-  - Throttling (ex 1 req / 5 sec)
+```go
+t := <-message // ⏳ blocked
+```
 
-  - Channel Duplication
+```go
+message <- "Hello"
+message <- "world! // ⏳ blocked
+```
+
+---
+
+```go
+numbers <- 0
+numbers <- 1
+numbers <- 2
+fmt.Println(<-numbers)
+fmt.Println(<-numbers)
+fmt.Println(<-numbers)
+fmt.Println(<-numbers) // ⏳ blocked
+```
+
+---
+
+Unbuffered channels seem useless at first sight
+
+```go
+ready <- true // ⏳
+```
+
+```go
+status := <-ready // ⏳
+```
+
+
+
+---
+
+... but they actually shine 
+
+  - in a concurrent setting 
+  
+  - as a synchronisation mecanism !
+
+----
+
+### We're not ready yet
+
+```go
+var ready = make(chan bool)
+
+func Greetings() {
+    for i:=0; i<10; i++ {
+        fmt.Println("Hello world!")
+    }
+    ready <- true
+} 
+
+func main() {
+    fmt.Println("begin")
+    <-ready // Wait for it!
+    fmt.Println("end")
+}
+
+```
+
+---
+
+### Parallel Computations
+
+```go
+var c = make(chan int)
+
+func sum(s []int) {
+    sum := 0
+    for _, v := range s {
+        sum += v
+    }
+    c <- sum
+}
+
+func main() {
+    s := []int{7, 2, 8, -9, 4, 0}
+    go sum(s[:len(s)/2], c)
+    go sum(s[len(s)/2:], c)
+    x, y := <-c, <-c
+    fmt.Println(x, y, x+y)
+}
+```
+
+---
+
+### Throttling Process
+
+```go
+func throttled(input chan string) chan string {
+    output := make(chan string)
+    go func() {
+        for {
+            output <- <-input
+            time.Sleep(3 * time.Second)
+        }
+    }()
+    return output
+}
+
+func main() {
+    input := make(chan string)
+    output := throttled(input)
+    for i:=0; i<10; i++ {
+        input <- "Hello world!"
+        fmt.Println(<-output)
+    }
+}
+```
+
+---
+
+### Timers
+
+Instead of 
+
+```
+for {
+    for i:=0; i < 10; i++ {
+        // Executed at ~10Hz
+        fmt.Println("FAST")
+        time.Sleep(time.Second / 10) 
+    }
+    // Executed at ~1Hz
+    fmt.Println("SLOW") 
+}
+```
+
+consider
+
+---
+
+```
+func Printer(m string, d time.Duration) {
+    for {
+        fmt.Print(m)
+        time.Sleep(d)
+    }
+}
+
+func main() {
+    go Printer("FAST", time.Second / 10)
+    Printer("SLOW", time.Second)
+}
+```
+
+---
+
+Even better
+
+```
+func Printer(m string, d time.Duration) {
+    for {
+        wait := time.After(d)
+        fmt.Println(m)
+        <-wait
+    }
+}
+
+func main() {
+    go Printer("FAST", time.Second / 10)
+    Printer("SLOW", time.Second)
+}
+```
+
+or use the [`time` module](https://pkg.go.dev/time)  `Ticker` & `Timer` API!
+
+---
+
+## TODO
+
+  - Mention Actor model ("Subject" vs "Object")
 
 ---
 
