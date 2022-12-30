@@ -57,11 +57,19 @@ func main() {
 
 ---
 
-With `go`, `says("world")`:
+`go says("world")`:
 
-  - is a **non-blocking** call (with no return value),
+  - is a **non-blocking** call: it returns "immediately",
+    and doesn't wait for the completion of the function.
 
-  - gets executed **in the background**,
+  - its gets executed: 
+  
+      - **in the background**,
+
+      - in its own **lightweight process**
+
+      - with its own **execution thread**
+
 
   - **concurrently** with `say("hello")`
 
@@ -73,6 +81,17 @@ With `go`, `says("world")`:
 
 What's going on?
 
+---
+
+![bg left:25%](images/tim-mossholder-QbHF_M47FeY-unsplash.jpg)
+
+### ⚠️ Pitfall
+
+  - 🎲 Concurrency $\to$ **non-determinism**
+
+  - 🤔 Programs are harder to understand
+
+  - 🪲 Beware the [Heisenbugs](Heisenbug)!
 
 ---
 
@@ -90,34 +109,30 @@ func main() {
 What is going on ? Do you have a (dirty) fix ?
 
 ---
-
-## Pitfalls of Concurrency
-
-⚠️ Concurrent process & Shared Variables
-
----
+![bg right](images/uriel-soberanes-L1bAGEWYCtk-unsplash.jpg)
 
 ```go
-func main() {
-    counter := 0
-    // 📈
-    go func() {
-        for {
-            fmt.Println(counter)
-            time.Sleep(time.Second)
-        }
-    }()
+var counter
+
+func add(i int) {
+    counter += i
+}
+
+func display() {
     for {
-        // 😴
+        fmt.Println(counter)
         time.Sleep(time.Second)
-        // 🔨
+    }
+}
+
+func main() {
+    go display() // 📈
+    for {
+        time.Sleep(time.Second) // 😴
+        // 🔨 Hammer the counter!
         for i := 0; i < 1000; i++ {
-            go func() {
-                counter = counter + 1
-            }()
-            go func() {
-                counter = counter - 1
-            }()
+            go add(1)
+            go add(-1)
         }
     }
 }
@@ -131,13 +146,13 @@ func main() {
 
 ---
 
+## Shared Variables
+
   - In C/C++, you would use a 🔒 **lock** (mutex) to ensure that at most one process can access the `counter` variable at any given moment.
 
 ---
 
-This also works in Go, but it's not idiomatic. 
-
-In Go:
+This also works in Go, but it's not idiomatic. Instead:
 
   > Don't communicate by sharing memory; 
   > share memory by communicating.
@@ -146,6 +161,7 @@ The core communication device is a **channel**.
 
 ---
 
+![bg](images/christophe-dion-3KA1M16PuoE-unsplash.jpg)
 
 ## Channels
 
