@@ -111,10 +111,10 @@ What is going on ? Do you have a (dirty) fix ?
 ---
 ![bg right](images/uriel-soberanes-L1bAGEWYCtk-unsplash.jpg)
 
-### Data races
+### ⚠️ Data races
 
 ```go
-var counter
+var counter = 0
 
 func add(i int) {
     counter += i
@@ -309,9 +309,52 @@ func main() {
 
 ---
 
+
+### ✌️ No more data races
+
+![bg left:33%](images/hello-i-m-nik-MAgPyHRO0AA-unsplash.jpg)
+
+Channels: safe to use concurrently
+
+```go
+var counter = 0
+var ch = make(chan int, 100)
+
+func add(i int) {
+    ch <- i
+}
+
+func counterHandler() {
+    func() {
+        for {
+            counter += <-ch
+        }
+    }()
+}
+```
+
+---
+
+```go
+func main() {
+    go counterHandler() // ⚡ New!
+    go display() // 📈
+    for {
+        time.Sleep(time.Second) // 😴
+        // 🔨 Hammer the counter!
+        for i := 0; i < 1000; i++ {
+            go add(1)
+            go add(-1)
+        }
+    }
+}
+```
+
+---
+
 ### Timers
 
-Instead of 
+Sequential implementation of two concurrent processes:
 
 ```go
 for {
@@ -325,9 +368,9 @@ for {
 }
 ```
 
-consider
-
 ---
+
+Consider instead
 
 ```go
 func Printer(m string, d time.Duration) {
