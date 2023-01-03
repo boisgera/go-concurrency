@@ -23,8 +23,8 @@ import (
 
 func say(s string) {
     for i := 0; i < 5; i++ {
-    time.Sleep(100 * time.Millisecond)
-    fmt.Println(s)
+        time.Sleep(100 * time.Millisecond)
+        fmt.Println(s)
     }
 }
 ```
@@ -110,6 +110,8 @@ What is going on ? Do you have a (dirty) fix ?
 
 ---
 ![bg right](images/uriel-soberanes-L1bAGEWYCtk-unsplash.jpg)
+
+### Data races
 
 ```go
 var counter
@@ -230,7 +232,7 @@ status := <-ready // ⏳
 
   - in a concurrent setting 
   
-  - as a synchronisation mecanism !
+  - as a synchronisation mecanism!
 
 ----
 
@@ -248,7 +250,8 @@ func Greetings() {
 
 func main() {
     fmt.Println("begin")
-    <-ready // Wait for it!
+    go Greetings()
+    <-ready // Wait for the end!
     fmt.Println("end")
 }
 
@@ -310,7 +313,7 @@ func main() {
 
 Instead of 
 
-```
+```go
 for {
     for i:=0; i < 10; i++ {
         // Executed at ~10Hz
@@ -326,7 +329,7 @@ consider
 
 ---
 
-```
+```go
 func Printer(m string, d time.Duration) {
     for {
         fmt.Print(m)
@@ -344,7 +347,7 @@ func main() {
 
 Even better
 
-```
+```go
 func Printer(m string, d time.Duration) {
     for {
         wait := time.After(d)
@@ -363,113 +366,38 @@ or use the [`time` module](https://pkg.go.dev/time)  `Ticker` & `Timer` API!
 
 ---
 
+![bg left:33%](images/tim-zankert-gm3M-CsuynI-unsplash.jpg)
+
+```go
+func HappyNewYear(year int) chan struct{} {
+    trigger := make(chan struct{})
+    newYear := time.Date(
+        year, time.January, 
+        0, 0, 0, 0, 0, time.UTC)
+
+    go func() {
+        for {
+            if time.Now().After(newYear) {
+                fmt.Println("🥳 Happy New Year!")
+                trigger <- struct{}{}
+                return
+            }
+            time.Sleep(time.Second)
+        }
+    }()
+
+    return trigger
+}
+
+func main() {
+    <-HappyNewYear(2023)
+}
+```
+
+<!--
+
 ## TODO
 
   - Mention Actor model ("Subject" vs "Object")
 
----
-
-![bg](images/nasa-wAkLQnT2TC0-unsplash.jpg)
-
-<!-- _color: white -->
-
-# Where is the ISS?
-
-![](images/ISS-position-browser.png)
-
----
-
-`app.go`
-
-```go
-package main
-
-import (
-    "io"
-    "net/http"
-)
-
-func PrintISSPosition() {
-    resp, _ := http.Get("http://api.open-notify.org/iss-now.json")
-    body := resp.Body
-    bytes, _ := io.ReadAll(body)
-    fmt.Println(string(bytes))
-}
-
-func main() {
-    PrintISSPosition()
-}
-```
-
----
-
-
-```
-$ go run app.go 
-{"message": "success", "timestamp": 1672155304, 
-"iss_position": {"longitude": "-13.8055", "latitude": "-37.7661"}}
-```
-
----
-
-```go
-import (
-    "fmt"
-    "time"
-)
-
-...
-
-func Compute() {
-    for i := 1; i <= 10; i++ {
-    time.Sleep(time.Second / 10)
-    fmt.Print(i, " ")
-    }
-    fmt.Println("")
-}
-
-func main() {
-    PrintISSPosition()
-    Compute()
-}
-
-```
-
----
-
-```
-$ time go run app.go 
-{"message": "success", "timestamp": 1672155760, 
-"iss_position": {"longitude": "21.8250", "latitude": "-50.7057"}}
-1 2 3 4 5 6 7 8 9 10 
-
-real    0m1,710s
-user    0m0,394s
-sys     0m0,125s
-```
-
----
-
-## Start a GoRoutine
-
-```go
-
-func main() {
-    go PrintISSPosition()
-    Compute()
-}
-
-```
-
----
-
-```
-$ time go run app.go 
-1 2 3 4 {"message": "success", "timestamp": 1672156095, 
-"iss_position": {"longitude": "54.5906", "latitude": "-49.9492"}}
-5 6 7 8 9 10 
-
-real    0m1,318s
-user    0m0,400s
-sys     0m0,163s
-```
+-->
