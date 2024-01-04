@@ -57,7 +57,7 @@ func main() {
 
 ---
 
-`go says("world")`:
+`go says("hello")`:
 
   - is a **non-blocking** call: it returns "immediately",
     and doesn't wait for the completion of the function.
