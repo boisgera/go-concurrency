@@ -22,7 +22,7 @@ import (
 )
 
 func say(s string) {
-    for i := 0; i < 5; i++ {
+    for i := 0; i < 3; i++ {
         time.Sleep(100 * time.Millisecond)
         fmt.Println(s)
     }
@@ -37,8 +37,8 @@ func say(s string) {
 
 ```go
 func main() {
-    say("world")
     say("hello")
+    say("world")
 }
 ```
 
@@ -50,8 +50,8 @@ func main() {
 
 ```go
 func main() {
-    go say("world")
-    say("hello")
+    go say("hello")
+    say("world")
 }
 ```
 
@@ -95,18 +95,41 @@ What's going on?
 
 ---
 
-### 🧪 Experiment
+### 🩹 A Quick and Dirty Fix
 
-🚀 Execute
+Make sure that all messages are printed:
 
 ```go
 func main() {
-    go say("world")
     go say("hello")
+    go say("world")
+    time.Sleep(3 * time.Second)
 }
 ```
 
-What is going on ? Do you have a (dirty) fix ?
+--- 
+
+### 🩹 A Proper Fix
+
+WaitGroup 
+
+```go
+import "sync"
+
+func main() {
+    wg := sync.WaitGroup{}
+    wg.Add(1)
+    go func() {
+        say("hello")
+        wg.Done()
+	}()
+    say("world")
+    wg.Wait()
+}
+```
+
+
+
 
 ---
 ![bg right](images/uriel-soberanes-L1bAGEWYCtk-unsplash.jpg)
@@ -114,28 +137,27 @@ What is going on ? Do you have a (dirty) fix ?
 ### ⚠️ Data races
 
 ```go
+package main
+
+import "time"
+
 var counter = 0
 
 func add(i int) {
     counter += i
 }
 
-func display() {
-    for {
-        fmt.Println(counter)
-        time.Sleep(time.Second)
-    }
-}
 
 func main() {
-    go display() // 📈
     for {
-        time.Sleep(time.Second) // 😴
+        println(counter)
         // 🔨 Hammer the counter!
         for i := 0; i < 1000; i++ {
             go add(1)
             go add(-1)
         }
+        // 😴 Let the dust settle
+        time.Sleep(time.Second) 
     }
 }
 ```
