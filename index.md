@@ -347,11 +347,9 @@ func add(i int) {
 }
 
 func counterHandler() {
-    func() {
-        for {
-            counter += <-ch
-        }
-    }()
+    for {
+        counter += <-ch
+    }
 }
 ```
 
