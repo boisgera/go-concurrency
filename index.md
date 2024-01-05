@@ -299,7 +299,7 @@ func main() {
     go sum(s[:len(s)/2])
     go sum(s[len(s)/2:])
     x, y := <-c, <-c
-    fmt.Println(x, y, x+y)
+    println(x, y, x+y)
 }
 ```
 

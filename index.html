@@ -238,7 +238,7 @@ fmt.Println(&lt;-numbers) <span class="hljs-comment">// <img class="emoji" dragg
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-theme="uncover" lang="en-US" style="--theme:uncover;">
 <h3 id="parallel-computations">Parallel Computations</h3>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">var</span> c = <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>)
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">var</span> c = <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">int</span>, <span class="hljs-number">2</span>)
 
 <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">sum</span><span class="hljs-params">(s []<span class="hljs-type">int</span>)</span></span> {
     sum := <span class="hljs-number">0</span>
@@ -253,7 +253,7 @@ fmt.Println(&lt;-numbers) <span class="hljs-comment">// <img class="emoji" dragg
     <span class="hljs-keyword">go</span> sum(s[:<span class="hljs-built_in">len</span>(s)/<span class="hljs-number">2</span>])
     <span class="hljs-keyword">go</span> sum(s[<span class="hljs-built_in">len</span>(s)/<span class="hljs-number">2</span>:])
     x, y := &lt;-c, &lt;-c
-    fmt.Println(x, y, x+y)
+    <span class="hljs-built_in">println</span>(x, y, x+y)
 }
 </code></pre>
 </section>
