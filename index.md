@@ -284,7 +284,7 @@ func main() {
 ### Parallel Computations
 
 ```go
-var c = make(chan int)
+var c = make(chan int, 2)
 
 func sum(s []int) {
     sum := 0
