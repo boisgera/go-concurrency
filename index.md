@@ -455,7 +455,7 @@ func HappyNewYear(year int) chan struct{} {
 }
 
 func main() {
-    <-HappyNewYear(2023)
+    <-HappyNewYear(2024)
 }
 ```
 
