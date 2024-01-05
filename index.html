@@ -250,8 +250,8 @@ fmt.Println(&lt;-numbers) <span class="hljs-comment">// <img class="emoji" dragg
 
 <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
     s := []<span class="hljs-type">int</span>{<span class="hljs-number">7</span>, <span class="hljs-number">2</span>, <span class="hljs-number">8</span>, <span class="hljs-number">-9</span>, <span class="hljs-number">4</span>, <span class="hljs-number">0</span>}
-    <span class="hljs-keyword">go</span> sum(s[:<span class="hljs-built_in">len</span>(s)/<span class="hljs-number">2</span>], c)
-    <span class="hljs-keyword">go</span> sum(s[<span class="hljs-built_in">len</span>(s)/<span class="hljs-number">2</span>:], c)
+    <span class="hljs-keyword">go</span> sum(s[:<span class="hljs-built_in">len</span>(s)/<span class="hljs-number">2</span>])
+    <span class="hljs-keyword">go</span> sum(s[<span class="hljs-built_in">len</span>(s)/<span class="hljs-number">2</span>:])
     x, y := &lt;-c, &lt;-c
     fmt.Println(x, y, x+y)
 }

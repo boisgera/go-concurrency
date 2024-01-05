@@ -296,8 +296,8 @@ func sum(s []int) {
 
 func main() {
     s := []int{7, 2, 8, -9, 4, 0}
-    go sum(s[:len(s)/2], c)
-    go sum(s[len(s)/2:], c)
+    go sum(s[:len(s)/2])
+    go sum(s[len(s)/2:])
     x, y := <-c, <-c
     fmt.Println(x, y, x+y)
 }
