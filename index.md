@@ -70,8 +70,7 @@ func main() {
 
       - with its own **execution thread**
 
-
-  - **concurrently** with `say("hello")`
+  - **concurrently** with `say("world")`
 
 ---
 
@@ -102,8 +101,8 @@ Make sure that all messages are printed:
 ```go
 func main() {
     go say("hello")
-    go say("world")
-    time.Sleep(3 * time.Second)
+    say("world")
+    time.Sleep(1 * time.Second)
 }
 ```
 
@@ -114,6 +113,8 @@ func main() {
 WaitGroup 
 
 ```go
+package main
+
 import "sync"
 
 func main() {
@@ -122,11 +123,34 @@ func main() {
     go func() {
         say("hello")
         wg.Done()
-	}()
+    }()
     say("world")
     wg.Wait()
 }
 ```
+
+---
+
+### Alternatively ... 
+
+Use `WaitGroup` from the 🐚 [conc] library.
+
+```go
+package main
+
+import "github.com/sourcegraph/conc"
+
+func main() {
+    wg := conc.WaitGroup{}
+    wg.Go(func() {
+        say("hello")
+    })
+    say("world")
+    wg.Wait()
+}
+```
+
+[conc]: https://github.com/sourcegraph/conc
 
 
 
@@ -261,6 +285,8 @@ status := <-ready // ⏳
 ### We're not ready yet
 
 ```go
+package main
+
 var ready = make(chan bool)
 
 func Greetings() {
@@ -284,6 +310,8 @@ func main() {
 ### Parallel Computations
 
 ```go
+package main
+
 var c = make(chan int, 2)
 
 func sum(s []int) {
@@ -308,6 +336,8 @@ func main() {
 ### Throttling Process
 
 ```go
+package main
+
 func throttled(input chan string) chan string {
     output := make(chan string)
     go func() {
@@ -330,6 +360,40 @@ func main() {
 ```
 
 ---
+### Sieve
+
+```go
+package main
+
+func generate(ch chan int) {
+    for i := 2; ; i++ {
+        ch <- i
+    }
+}
+
+func filter(in, out chan int, prime int) {
+    for {
+        i := <-in
+        if i%prime != 0 {
+            out <- i
+        }
+    }
+}
+
+func main() {
+    ch := make(chan int)
+    go generate(ch)
+    for {
+        prime := <-ch
+        println(prime)
+        ch1 := make(chan int)
+        go filter(ch, ch1, prime)
+        ch = ch1
+    }
+}
+```
+
+---
 
 
 ### ✌️ No more data races
@@ -340,7 +404,7 @@ Channels: safe to use concurrently
 
 ```go
 var counter = 0
-var ch = make(chan int, 100)
+var ch = make(chan int, 2000)
 
 func add(i int) {
     ch <- i
@@ -356,16 +420,18 @@ func counterHandler() {
 ---
 
 ```go
+package main
+
 func main() {
     go counterHandler() // ⚡ New!
-    go display() // 📈
     for {
-        time.Sleep(time.Second) // 😴
         // 🔨 Hammer the counter!
         for i := 0; i < 1000; i++ {
             go add(1)
             go add(-1)
         }
+        time.Sleep(time.Second) // 😴
+        println(counter) // 📈
     }
 }
 ```
@@ -411,6 +477,8 @@ func main() {
 Even better
 
 ```go
+package main
+
 func Printer(m string, d time.Duration) {
     for {
         wait := time.After(d)
@@ -432,16 +500,19 @@ or use the [`time` module](https://pkg.go.dev/time)  `Ticker` & `Timer` API!
 ![bg left:33%](images/tim-zankert-gm3M-CsuynI-unsplash.jpg)
 
 ```go
+package main
+
+import "time"
+
 func HappyNewYear(year int) chan struct{} {
     trigger := make(chan struct{})
     newYear := time.Date(
-        year, time.January, 
+        year, time.January,
         0, 0, 0, 0, 0, time.UTC)
 
     go func() {
         for {
             if time.Now().After(newYear) {
-                fmt.Println("🥳 Happy New Year!")
                 trigger <- struct{}{}
                 return
             }
@@ -453,7 +524,8 @@ func HappyNewYear(year int) chan struct{} {
 }
 
 func main() {
-    <-HappyNewYear(2024)
+    <-HappyNewYear(2025)
+    println("🥳 Happy New Year!")
 }
 ```
 
