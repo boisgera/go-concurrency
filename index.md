@@ -7,6 +7,8 @@ theme: uncover
 
 # Go Concurrency
 
+🔄⏳🔀⏳🔄⏳🔀⏳🔄⏳🔀⏳🔄⏳🔀
+
 ---
 
 ## Goroutines 
@@ -263,11 +265,11 @@ fmt.Println(<-numbers) // ⏳ blocked
 Unbuffered channels seem useless at first sight
 
 ```go
-ready <- true // ⏳
+ready <- true // ⏳ blocked
 ```
 
 ```go
-status := <-ready // ⏳
+status := <-ready // ⏳ blocked
 ```
 
 
@@ -348,14 +350,20 @@ func throttled(input chan string) chan string {
     }()
     return output
 }
+```
+-----
+
+```
+package main
 
 func main() {
-    input := make(chan string)
+    input := make(chan string, 10)
     output := throttled(input)
     for i:=0; i<10; i++ {
         input <- "Hello world!"
-        fmt.Println(<-output)
     }
+    for i:=0; i<10; i++ {
+        println(<-output)
 }
 ```
 
