@@ -1,3 +1,1 @@
-# Go Concurrency
-
-📖 [Slide Deck](https://boisgera.github.io/go-concurrency/)
+[![Go concurrency][images/first-slide.png]](https://boisgera.github.io/go-concurrency)
