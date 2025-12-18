@@ -236,10 +236,7 @@ ready := make(chan bool) // same as make(chan bool, 0)
 ```go
 message <- "Hello world!"
 s := <-message
-fmt.Println(s)
-```
-
-```go
+fmt.Println(s) // Hello world!
 t := <-message // ⏳ blocked
 ```
 
@@ -485,8 +482,6 @@ func main() {
 Even better
 
 ```go
-package main
-
 func Printer(m string, d time.Duration) {
     for {
         wait := time.After(d)
@@ -532,15 +527,7 @@ func HappyNewYear(year int) chan struct{} {
 }
 
 func main() {
-    <-HappyNewYear(2025)
+    <-HappyNewYear(2026)
     println("🥳 Happy New Year!")
 }
 ```
-
-<!--
-
-## TODO
-
-  - Mention Actor model ("Subject" vs "Object")
-
--->
