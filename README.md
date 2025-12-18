@@ -25,4 +25,4 @@ to generate the `index.html` slide deck.
 
 ## ⚖️ License
 
-[Go Concurrency](https://example.com) © 2025 by [Sébastien Boisgérault](mailto:Sebastien.Boisgerault@gmail.com) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="CC" width="16" height="16" style="vertical-align: text-bottom; margin-left: 2px;"> <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="BY" width="16" height="16" style="vertical-align: text-bottom; margin-left: 2px;">
+[Go Concurrency](https://boisgera.github.io/go-concurrency) © 2025 by [Sébastien Boisgérault](mailto:Sebastien.Boisgerault@gmail.com) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg" alt="CC" width="16" height="16" style="vertical-align: text-bottom; margin-left: 2px;"> <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg" alt="BY" width="16" height="16" style="vertical-align: text-bottom; margin-left: 2px;">
