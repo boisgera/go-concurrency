@@ -350,7 +350,7 @@ func throttled(input chan string) chan string {
 ```
 -----
 
-```
+```go
 package main
 
 func main() {
