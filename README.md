@@ -18,7 +18,7 @@ npx @marp-team/marp-cli index.md
 
 to generate the `index.html` slide deck.
 
-## References
+## 📖 References
 
- - 📖 [What Color is Your Function?](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/) by Bob Nystrom. This blog post provides a nice 
+ - [What Color is Your Function?](https://journal.stuffwithstuff.com/2015/02/01/what-color-is-your-function/) by Bob Nystrom. This blog post provides a nice 
  comparison of the concurrency models used by Python and Go.
