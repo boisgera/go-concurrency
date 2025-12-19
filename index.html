@@ -135,7 +135,7 @@ and doesn't wait for the completion of the function.</p>
 </code></pre>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-theme="uncover" lang="C" style="--theme:uncover;">
-<h3 id="alternatively">Alternatively ...</h3>
+<h3 id="alternatively-deprecated">Alternatively (DEPRECATED)...</h3>
 <p>Use <code>WaitGroup</code> from the <img class="emoji" draggable="false" alt="🐚" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f41a.svg" data-marp-twemoji=""/> <a href="https://github.com/sourcegraph/conc">conc</a> library.</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
@@ -151,7 +151,24 @@ and doesn't wait for the completion of the function.</p>
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/uriel-soberanes-L1bAGEWYCtk-unsplash.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="11" data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-theme="uncover" lang="C" style="--theme:uncover;">
+<h3 id="%F0%9F%93%B0-news"><img class="emoji" draggable="false" alt="📰" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f4f0.svg" data-marp-twemoji=""/> News!</h3>
+<p>This feature is now in the standard library!</p>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">&quot;sync&quot;</span>
+
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    wg := sync.WaitGroup{}
+    wg.Go(<span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">()</span></span> {
+        say(<span class="hljs-string">&quot;hello&quot;</span>)
+    })
+    say(<span class="hljs-string">&quot;world&quot;</span>)
+    wg.Wait()
+}
+</code></pre>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="right"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/uriel-soberanes-L1bAGEWYCtk-unsplash.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="50%" height="720"><section id="12" data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:50%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="right">
 <h3 id="%E2%9A%A0%EF%B8%8F-data-races"><img class="emoji" draggable="false" alt="⚠️" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/26a0.svg" data-marp-twemoji=""/> Data races</h3>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
@@ -178,16 +195,16 @@ and doesn't wait for the completion of the function.</p>
 }
 </code></pre>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-theme="uncover" lang="C" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" lang="C" style="--theme:uncover;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/counter.svg&quot;);background-size:contain;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="12" data-theme="uncover" lang="C" style="--theme:uncover;" data-marpit-advanced-background="content">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-theme="uncover" lang="C" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="right"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" lang="C" style="--theme:uncover;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/counter.svg&quot;);background-size:contain;"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="13" data-theme="uncover" lang="C" style="--theme:uncover;" data-marpit-advanced-background="content">
 <h3 id="%F0%9F%A4%A6-ooops"><img class="emoji" draggable="false" alt="🤦" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f926.svg" data-marp-twemoji=""/> Ooops</h3>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-theme="uncover" lang="C" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-theme="uncover" lang="C" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-theme="uncover" lang="C" style="--theme:uncover;">
 <h2 id="shared-variables">Shared Variables</h2>
 <ul>
 <li>In C/C++, you would use a <img class="emoji" draggable="false" alt="🔒" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/1f512.svg" data-marp-twemoji=""/> <strong>lock</strong> (mutex) to ensure that at most one process can access the <code>counter</code> variable at any given moment.</li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="14" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="15" data-theme="uncover" lang="C" style="--theme:uncover;">
 <p>This also works in Go, but it's not idiomatic. Instead:</p>
 <blockquote>
 <p>Don't communicate by sharing memory;<br />
@@ -195,10 +212,10 @@ share memory by communicating.</p>
 </blockquote>
 <p>The core communication device is a <strong>channel</strong>.</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" lang="C" style="--theme:uncover;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/christophe-dion-3KA1M16PuoE-unsplash.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="15" data-theme="uncover" lang="C" style="--theme:uncover;" data-marpit-advanced-background="content">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" lang="C" style="--theme:uncover;" data-marpit-advanced-background="background"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/christophe-dion-3KA1M16PuoE-unsplash.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="1280" height="720"><section id="16" data-theme="uncover" lang="C" style="--theme:uncover;" data-marpit-advanced-background="content">
 <h2 id="channels">Channels</h2>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-theme="uncover" lang="C" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-theme="uncover" lang="C" style="" data-marpit-advanced-background="pseudo"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-theme="uncover" lang="C" style="--theme:uncover;">
 <h3 id="create">Create</h3>
 <p>Channels are typed and (optionally) buffered:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go">message := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>, <span class="hljs-number">1</span>)
@@ -208,7 +225,7 @@ numbers := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">ch
 ready := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">bool</span>) <span class="hljs-comment">// same as make(chan bool, 0)</span>
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="17" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-theme="uncover" lang="C" style="--theme:uncover;">
 <h3 id="read--write">Read &amp; Write</h3>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go">message &lt;- <span class="hljs-string">&quot;Hello world!&quot;</span>
 s := &lt;-message
@@ -219,7 +236,7 @@ t := &lt;-message <span class="hljs-comment">// <img class="emoji" draggable="fa
 message &lt;- <span class="hljs-string">&quot;world! // <img class="emoji" draggable="false" alt="⏳" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" data-marp-twemoji=""/> blocked
 </span></code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="18" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-theme="uncover" lang="C" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go">numbers &lt;- <span class="hljs-number">0</span>
 numbers &lt;- <span class="hljs-number">1</span>
 numbers &lt;- <span class="hljs-number">2</span>
@@ -229,14 +246,14 @@ fmt.Println(&lt;-numbers)
 fmt.Println(&lt;-numbers) <span class="hljs-comment">// <img class="emoji" draggable="false" alt="⏳" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" data-marp-twemoji=""/> blocked</span>
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="19" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-theme="uncover" lang="C" style="--theme:uncover;">
 <p>Unbuffered channels seem useless at first sight</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go">ready &lt;- <span class="hljs-literal">true</span> <span class="hljs-comment">// <img class="emoji" draggable="false" alt="⏳" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" data-marp-twemoji=""/> blocked</span>
 </code></pre>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go">status := &lt;-ready <span class="hljs-comment">// <img class="emoji" draggable="false" alt="⏳" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/23f3.svg" data-marp-twemoji=""/> blocked</span>
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="20" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-theme="uncover" lang="C" style="--theme:uncover;">
 <p>... but they actually shine</p>
 <ul>
 <li>
@@ -247,7 +264,7 @@ fmt.Println(&lt;-numbers) <span class="hljs-comment">// <img class="emoji" dragg
 </li>
 </ul>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="21" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-theme="uncover" lang="C" style="--theme:uncover;">
 <h3 id="were-not-ready-yet">We're not ready yet</h3>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
@@ -269,7 +286,7 @@ fmt.Println(&lt;-numbers) <span class="hljs-comment">// <img class="emoji" dragg
 
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="22" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-theme="uncover" lang="C" style="--theme:uncover;">
 <h3 id="parallel-computations">Parallel Computations</h3>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
@@ -292,7 +309,7 @@ fmt.Println(&lt;-numbers) <span class="hljs-comment">// <img class="emoji" dragg
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="23" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-theme="uncover" lang="C" style="--theme:uncover;">
 <h3 id="throttling-process">Throttling Process</h3>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
@@ -308,21 +325,21 @@ fmt.Println(&lt;-numbers) <span class="hljs-comment">// <img class="emoji" dragg
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="24" data-theme="uncover" lang="C" style="--theme:uncover;">
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code>package main
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-theme="uncover" lang="C" style="--theme:uncover;">
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
-func main() {
-    input := make(chan string, 10)
+<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
+    input := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">chan</span> <span class="hljs-type">string</span>, <span class="hljs-number">10</span>)
     output := throttled(input)
-    for i:=0; i&lt;10; i++ {
-        input &lt;- &quot;Hello world!&quot;
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">10</span>; i++ {
+        input &lt;- <span class="hljs-string">&quot;Hello world!&quot;</span>
     }
-    for i:=0; i&lt;10; i++ {
-        println(&lt;-output)
+    <span class="hljs-keyword">for</span> i:=<span class="hljs-number">0</span>; i&lt;<span class="hljs-number">10</span>; i++ {
+        <span class="hljs-built_in">println</span>(&lt;-output)
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="25" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="26" data-theme="uncover" lang="C" style="--theme:uncover;">
 <h3 id="sieve">Sieve</h3>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
@@ -354,7 +371,7 @@ func main() {
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:33%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/hello-i-m-nik-MAgPyHRO0AA-unsplash.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="67%" height="720" x="33%"><section id="26" data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:33%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:33%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/hello-i-m-nik-MAgPyHRO0AA-unsplash.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="67%" height="720" x="33%"><section id="27" data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:33%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left">
 <h3 id="%E2%9C%8C%EF%B8%8F-no-more-data-races"><img class="emoji" draggable="false" alt="✌️" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/270c.svg" data-marp-twemoji=""/> No more data races</h3>
 
 <p>Channels: safe to use concurrently</p>
@@ -372,7 +389,7 @@ func main() {
 }
 </code></pre>
 </section>
-</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-theme="uncover" lang="C" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="left"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="27" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject><foreignObject width="1280" height="720" data-marpit-advanced-background="pseudo"><section data-theme="uncover" lang="C" style="" data-marpit-advanced-background="pseudo" data-marpit-advanced-background-split="left"></section></foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-theme="uncover" lang="C" style="--theme:uncover;">
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
 <span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> {
@@ -389,7 +406,7 @@ func main() {
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="28" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-theme="uncover" lang="C" style="--theme:uncover;">
 <h3 id="timers">Timers</h3>
 <p>Sequential implementation of two concurrent processes:</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">for</span> {
@@ -403,7 +420,7 @@ func main() {
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="29" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-theme="uncover" lang="C" style="--theme:uncover;">
 <p>Consider instead</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Printer</span><span class="hljs-params">(m <span class="hljs-type">string</span>, d time.Duration)</span></span> {
     <span class="hljs-keyword">for</span> {
@@ -418,7 +435,7 @@ func main() {
 }
 </code></pre>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="30" data-theme="uncover" lang="C" style="--theme:uncover;">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="31" data-theme="uncover" lang="C" style="--theme:uncover;">
 <p>Even better</p>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Printer</span><span class="hljs-params">(m <span class="hljs-type">string</span>, d time.Duration)</span></span> {
     <span class="hljs-keyword">for</span> {
@@ -435,7 +452,7 @@ func main() {
 </code></pre>
 <p>or use the <a href="https://pkg.go.dev/time"><code>time</code> module</a>  <code>Ticker</code> &amp; <code>Timer</code> API!</p>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:33%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/tim-zankert-gm3M-CsuynI-unsplash.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="67%" height="720" x="33%"><section id="31" data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:33%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left"><pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:33%;" data-marpit-advanced-background="background" data-marpit-advanced-background-split="left"><div data-marpit-advanced-background-container="true" data-marpit-advanced-background-direction="horizontal"><figure style="background-image:url(&quot;images/tim-zankert-gm3M-CsuynI-unsplash.jpg&quot;);"></figure></div></section></foreignObject><foreignObject width="67%" height="720" x="33%"><section id="32" data-theme="uncover" lang="C" style="--theme:uncover;--marpit-advanced-background-split:33%;" data-marpit-advanced-background="content" data-marpit-advanced-background-split="left"><pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-go"><span class="hljs-keyword">package</span> main
 
 <span class="hljs-keyword">import</span> <span class="hljs-string">&quot;time&quot;</span>
 

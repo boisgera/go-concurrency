@@ -133,7 +133,7 @@ func main() {
 
 ---
 
-### Alternatively ... 
+### Alternatively (DEPRECATED)... 
 
 Use `WaitGroup` from the 🐚 [conc] library.
 
@@ -154,8 +154,26 @@ func main() {
 
 [conc]: https://github.com/sourcegraph/conc
 
+---
 
+### 📰 News!
 
+This feature is now in the standard library!
+
+```go
+package main
+
+import "sync"
+
+func main() {
+    wg := sync.WaitGroup{}
+    wg.Go(func() {
+        say("hello")
+    })
+    say("world")
+    wg.Wait()
+}
+```
 
 ---
 ![bg right](images/uriel-soberanes-L1bAGEWYCtk-unsplash.jpg)
